@@ -151,6 +151,19 @@ public:
     }
 };
 
+// Sắp xếp danh sách hành khách theo chiều giảm dần của Tổng tiền.
+void sapXepGiamDanTongTien(Hanhkhach danhSach[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (danhSach[j].tongtien() < danhSach[j + 1].tongtien()) {
+                Hanhkhach temp = danhSach[j];
+                danhSach[j] = danhSach[j + 1];
+                danhSach[j + 1] = temp;
+            }
+        }
+    }
+}
+
 int main() {
     // Nhập khách hàng
     cout << "\n=== NHẬP THÔNG TIN HÀNH KHÁCH ===" << endl;
@@ -174,4 +187,16 @@ int main() {
         danhSach[i].Xuat();
         cout << "=> Tổng tiền phải trả: " << danhSach[i].tongtien() << endl;
     }
+    
+    
+    // Hiển thị danh sách sau khi sắp xếp
+    cout << "\n=== DANH SÁCH SAU KHI SẮP XẾP GIẢM DẦN THEO TỔNG TIỀN ===" << endl;
+    sapXepGiamDanTongTien(danhSach, n);
+    for (int i = 0; i < n; i++) {
+        cout << "\n>> Hành khách thứ " << i + 1 << endl;
+        danhSach[i].Xuat();
+        cout << "=> Tổng tiền phải trả: " << danhSach[i].tongtien() << endl;
+    }
+    
+    return 0;
 }
