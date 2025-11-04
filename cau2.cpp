@@ -91,16 +91,74 @@ public:
         cout << "Ho ten: " << hoten << ", Gioi tinh: " << gioitinh << ", Tuoi: " << tuoi << endl;
     }
 };
+
+
+// Lớp Hanhkhach kế thừa từ Nguoi
+class Hanhkhach : public Nguoi {
+private:
+    // Em không dùng con trỏ như đề bài vì chưa rành lắm nên dùng mảng
+    Vemaybay ve[100];
+    int soluong;
     
+public:
+    // Hàm tạo mặc định
+    Hanhkhach() : Nguoi() {
+        soluong = 0;
+    }
+    
+    // Hàm hủy
+    ~Hanhkhach() {}
+    
+    // Hàm nhập
+    void Nhap() {
+        // Nhập thông tin người
+        Nguoi::Nhap();
+        
+        // Nhập số lượng vé
+        cout << "Nhap so luong ve: ";
+        cin >> soluong;
+        
+        // Nhập thông tin từng vé
+        for (int i = 0; i < soluong; i++) {
+            cout << "- Nhap thong tin ve thu " << i + 1 << endl;
+            ve[i].Nhap();
+        }
+    }
+    
+    // Hàm xuất
+    void Xuat() {
+        // Xuất thông tin người
+        Nguoi::Xuat();
+        
+        // Xuất vé
+        cout << "So luong ve: " << soluong << endl;
+        for (int i = 0; i < soluong; i++) {
+            cout << "- Ve " << i + 1 << ": ";
+            ve[i].Xuat();
+        }
+    }
+    
+    // Hàm tính tổng số tiền phải trả
+    long tongtien() {
+        long tong = 0;
+        
+        // Chạy for để tính tổng giá vé
+        for (int i = 0; i < soluong; i++) {
+            tong = tong + ve[i].getgiave();
+        }
+        
+        return tong;
+    }
+};
+
 
 int main() {
-    Vemaybay ve;
-    ve.Nhap();
-    ve.Xuat();
-
-    Nguoi nguoi;
-    nguoi.Nhap();
-    nguoi.Xuat();
-    return 0;
+    Hanhkhach hanhkhach;
+    hanhkhach.Nhap();
+    cout << endl;
     
+    hanhkhach.Xuat();
+    cout << "Tong tien phai tra: " << hanhkhach.tongtien() << endl;
+    
+    return 0;
 }
