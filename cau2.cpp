@@ -28,19 +28,19 @@ public:
     
     // Hàm nhập
     void Nhap() {
-        cout << "Nhap ten chuyen: ";
+        cout << "Nhập tên chuyến: ";
         cin.ignore();
         getline(cin, tenchuyen);
-        cout << "Nhap ngay bay: ";
+        cout << "Nhập ngày bay: ";
         getline(cin, ngaybay);
-        cout << "Nhap gia ve: ";
+        cout << "Nhập giá vé: ";
         cin >> giave;
     }
     
     // Hàm xuất
     void Xuat() {
-        cout << "Ten chuyen: " << tenchuyen << ", Ngay bay: " << ngaybay 
-             << ", Gia ve: " << giave << endl;
+        cout << "Tên chuyến: " << tenchuyen << ", Ngày bay: " << ngaybay 
+             << ", Giá vé: " << giave << endl;
     }
     
     // Hàm trả về giá vé
@@ -77,18 +77,18 @@ public:
     
     // Hàm nhập
     void Nhap() {
-        cout << "Nhap ho ten: ";
+        cout << "Nhập họ tên: ";
         cin.ignore();
         getline(cin, hoten);
-        cout << "Nhap gioi tinh: ";
+        cout << "Nhập giới tính: ";
         getline(cin, gioitinh);
-        cout << "Nhap tuoi: ";
+        cout << "Nhập tuổi: ";
         cin >> tuoi;
     }
     
     // Hàm xuất
     void Xuat() {
-        cout << "Ho ten: " << hoten << ", Gioi tinh: " << gioitinh << ", Tuoi: " << tuoi << endl;
+        cout << "Họ tên: " << hoten << ", Giới tính: " << gioitinh << ", Tuổi: " << tuoi << endl;
     }
 };
 
@@ -115,12 +115,12 @@ public:
         Nguoi::Nhap();
         
         // Nhập số lượng vé
-        cout << "Nhap so luong ve: ";
+        cout << "Nhập số lượng vé: ";
         cin >> soluong;
         
         // Nhập thông tin từng vé
         for (int i = 0; i < soluong; i++) {
-            cout << "- Nhap thong tin ve thu " << i + 1 << endl;
+            cout << "- Nhập thông tin vé thứ " << i + 1 << endl;
             ve[i].Nhap();
         }
     }
@@ -131,9 +131,9 @@ public:
         Nguoi::Xuat();
         
         // Xuất vé
-        cout << "So luong ve: " << soluong << endl;
+        cout << "Số lượng vé: " << soluong << endl;
         for (int i = 0; i < soluong; i++) {
-            cout << "- Ve " << i + 1 << ": ";
+            cout << "- Vé " << i + 1 << ": ";
             ve[i].Xuat();
         }
     }
@@ -151,14 +151,27 @@ public:
     }
 };
 
-
 int main() {
-    Hanhkhach hanhkhach;
-    hanhkhach.Nhap();
-    cout << endl;
+    // Nhập khách hàng
+    cout << "\n=== NHẬP THÔNG TIN HÀNH KHÁCH ===" << endl;
+    int n;
+    cout << "Nhập số lượng hành khách: ";
+    cin >> n;
     
-    hanhkhach.Xuat();
-    cout << "Tong tien phai tra: " << hanhkhach.tongtien() << endl;
+    // Tạo mảng chứa n hành khách
+    Hanhkhach danhSach[100];
     
-    return 0;
+    // Nhập thông tin cho từng hành khách
+    for (int i = 0; i < n; i++) {
+        cout << "\n- Nhập thông tin hành khách thứ " << i + 1 << endl;
+        danhSach[i].Nhap();
+    }
+    
+    // Hiển thị hành khách
+    cout << "\n=== DANH SÁCH HÀNH KHÁCH ===" << endl;
+    for (int i = 0; i < n; i++) {
+        cout << "\n>> Hành khách thứ " << i + 1 << endl;
+        danhSach[i].Xuat();
+        cout << "=> Tổng tiền phải trả: " << danhSach[i].tongtien() << endl;
+    }
 }
